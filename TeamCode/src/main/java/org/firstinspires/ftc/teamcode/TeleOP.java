@@ -20,12 +20,7 @@ public class TeleOP extends OpMode {
     final int turret_left = -360;
     final double claw_open = 0.8;
     final double claw_close = 0;
-    private PIDController controller;
-    public static double p = 0.002, i = 0, d = 0.0001;
-    public static double f = 0.01;
-    public static int target = 0;
-    private final double ticks_in_degree = 1440 / 360.0;
-    private DcMotorEx arm_motor;
+
 
     private PIDController slidescontroller;
     public static double ps = 0.002, is = 0, ds = 0;
@@ -34,6 +29,7 @@ public class TeleOP extends OpMode {
     private final double ticks_in_degrees = 384 / 360.0;
     private DcMotorEx slidesleft;
     private DcMotorEx slidesright;
+    private Servo turret;
 
 
 
@@ -63,8 +59,8 @@ public class TeleOP extends OpMode {
         slidescontroller = new PIDController(ps, is, ds);
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
 
-        slidesleft = hardwareMap.get(DcMotorEx.class, "slidesleft");
-        slidesright = hardwareMap.get(DcMotorEx.class, "slidesright");
+        slidesleft = hardwareMap.get(DcMotorEx.class, "slidesLeft");
+        slidesright = hardwareMap.get(DcMotorEx.class, "slidesRight");
 
         slidesleft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         slidesleft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -74,18 +70,16 @@ public class TeleOP extends OpMode {
         slidesright.setDirection(DcMotorSimple.Direction.REVERSE);
 
         claw = hardwareMap.servo.get("claw");
-        controller = new PIDController(p, i, d);
+        turret = hardwareMap.servo.get("turret");
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
 
-        arm_motor = hardwareMap.get(DcMotorEx.class, "turret");
-        arm_motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        arm_motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
 
 
         leftFront.setDirection(DcMotorSimple.Direction.REVERSE);
         leftRear.setDirection(DcMotorSimple.Direction.REVERSE);
-        claw.setPosition(0);
+        claw.setPosition(1);
+        turret.setPosition(0.5);
 
 
     }
@@ -95,7 +89,7 @@ public class TeleOP extends OpMode {
         if(gamepad2.left_bumper){
             switch (liftstate){
                 case LIFTIDLE:
-                    
+
             }
         }
 
@@ -118,30 +112,20 @@ public class TeleOP extends OpMode {
         telemetry.addData("posslides", slidesleftpos);
         telemetry.addData("target", targets);
 
-        controller.setPID(p, i, d);
-        int armPos = arm_motor.getCurrentPosition();
-        double pid = controller.calculate(armPos, target);
-        double ff = Math.cos(Math.toRadians(target/ticks_in_degree))* f;
 
-        double power = pid + ff;
-
-        arm_motor.setPower(power);
-
-        telemetry.addData("pos", armPos);
-        telemetry.addData("target", target);
 
         currentposleft = slidesleft.getCurrentPosition();
         currentposright = slidesright.getCurrentPosition();
 
         telemetry.addData("Left Spool", currentposleft);
         telemetry.addData("Right Spool", currentposright);
-        telemetry.addData("Turret", currentposturret);
+
         telemetry.update();
 
         if (gamepad1.x){
-            claw.setPosition(0.8);
+            claw.setPosition(0.3);
         }else if (gamepad1.b){
-            claw.setPosition(0);
+            claw.setPosition(1);
         }
 
         if(gamepad2.y) {
@@ -160,16 +144,16 @@ public class TeleOP extends OpMode {
         }
         if(gamepad2.x){
             if(slidesleft.getCurrentPosition()>50||slidesright.getCurrentPosition()>50) {
-                target = -360;
+                turret.setPosition(0.1);
             }
         }else if(gamepad2.b){
             if(slidesleft.getCurrentPosition()>50||slidesright.getCurrentPosition()>50) {
-                target = 360;
+                turret.setPosition(0.9);
             }
 
         }
         else if(gamepad2.right_bumper){
-            target = 0;
+            turret.setPosition(0.5);
         }
         if(gamepad1.left_stick_y ==0&&gamepad1.left_stick_x==0){
             leftFront.setPower(0);
@@ -195,10 +179,10 @@ public class TeleOP extends OpMode {
 
 
 
-            leftFront.setPower(frontLeftPower/denominator);
-            leftRear.setPower(backLeftPower/denominator);
-            rightFront.setPower(frontRightPower/denominator);
-            rightRear.setPower(backRightPower/denominator);
+        leftFront.setPower(frontLeftPower/denominator);
+        leftRear.setPower(backLeftPower/denominator);
+        rightFront.setPower(frontRightPower/denominator);
+        rightRear.setPower(backRightPower/denominator);
 
     }
 }
