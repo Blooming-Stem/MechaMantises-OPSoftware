@@ -229,7 +229,7 @@ public class AutoBlueRedLeft extends LinearOpMode
 
         if(tagOfInterest ==null){
             TrajectorySequence traj = drive.trajectorySequenceBuilder(new Pose2d())
-                    .back(49)
+                    .back(50)
                     .strafeRight(24)
                     .build();
             drive.followTrajectorySequence(traj);
@@ -241,7 +241,7 @@ public class AutoBlueRedLeft extends LinearOpMode
             switch (tagOfInterest.id) {
                 case 1:
                     TrajectorySequence traj = drive.trajectorySequenceBuilder(new Pose2d())
-                            .back(49)
+                            .back(50)
                             .strafeRight(23.75)
                             .build();
                     drive.followTrajectorySequence(traj);
@@ -249,7 +249,7 @@ public class AutoBlueRedLeft extends LinearOpMode
                     break;
                 case 2:
                     TrajectorySequence traj2 = drive.trajectorySequenceBuilder(new Pose2d())
-                            .back(49)
+                            .back(50)
                             //.strafeRight(24)
                             .build();
                     drive.followTrajectorySequence(traj2);
@@ -257,7 +257,7 @@ public class AutoBlueRedLeft extends LinearOpMode
                     break;
                 case 3:
                     TrajectorySequence traj3 = drive.trajectorySequenceBuilder(new Pose2d())
-                            .back(49)
+                            .back(50)
                             .strafeLeft(24)
                             .build();
                     drive.followTrajectorySequence(traj3);
