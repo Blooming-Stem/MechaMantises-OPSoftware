@@ -125,7 +125,7 @@ public class TeleOP extends OpMode {
         if (gamepad1.x){
             claw.setPosition(0.3);
         }else if (gamepad1.b){
-            claw.setPosition(1);
+            claw.setPosition(0.55);
         }
 
         if(gamepad2.y) {
@@ -144,11 +144,11 @@ public class TeleOP extends OpMode {
         }
         if(gamepad2.x){
             if(slidesleft.getCurrentPosition()>50||slidesright.getCurrentPosition()>50) {
-                turret.setPosition(0);
+                turret.setPosition(0.1);
             }
         }else if(gamepad2.b){
             if(slidesleft.getCurrentPosition()>50||slidesright.getCurrentPosition()>50) {
-                turret.setPosition(1);
+                turret.setPosition(0.9);
             }
 
         }
