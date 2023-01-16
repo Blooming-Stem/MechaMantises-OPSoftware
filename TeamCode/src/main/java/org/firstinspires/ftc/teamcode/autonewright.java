@@ -246,7 +246,7 @@ public class autonewright extends LinearOpMode {
                     targets = 2950;
                 })
                 .waitSeconds(0.2)
-                .back(34)
+                .back(34.15)
                 .UNSTABLE_addTemporalMarkerOffset(-1, () -> {
                     turret.setPosition(0.1);
                 })
@@ -272,7 +272,7 @@ public class autonewright extends LinearOpMode {
                     targets = 2950;
                 })
                 .waitSeconds(0.2)
-                .back(34)
+                .back(34.15)
                 .UNSTABLE_addTemporalMarkerOffset(-1, () -> {
                     turret.setPosition(0.1);
                 })
@@ -298,7 +298,7 @@ public class autonewright extends LinearOpMode {
                     targets = 2950;
                 })
                 .waitSeconds(0.2)
-                .back(34)
+                .back(34.15)
                 .UNSTABLE_addTemporalMarkerOffset(-1, () -> {
                     turret.setPosition(0.1);
                 })
@@ -311,7 +311,7 @@ public class autonewright extends LinearOpMode {
                     targets = 0;
                 })
 
-                .forward(34)
+                .back(16)
 
 
                 .build();
@@ -349,7 +349,7 @@ public class autonewright extends LinearOpMode {
                     targets = 2950;
                 })
                 .waitSeconds(0.2)
-                .back(34)
+                .back(34.15)
                 .UNSTABLE_addTemporalMarkerOffset(-1, () -> {
                     turret.setPosition(0.1);
                 })
@@ -375,7 +375,7 @@ public class autonewright extends LinearOpMode {
                     targets = 2950;
                 })
                 .waitSeconds(0.2)
-                .back(34)
+                .back(34.15)
                 .UNSTABLE_addTemporalMarkerOffset(-1, () -> {
                     turret.setPosition(0.1);
                 })
@@ -401,7 +401,7 @@ public class autonewright extends LinearOpMode {
                     targets = 2950;
                 })
                 .waitSeconds(0.2)
-                .back(34)
+                .back(34.15)
                 .UNSTABLE_addTemporalMarkerOffset(-1, () -> {
                     turret.setPosition(0.1);
                 })
@@ -453,7 +453,7 @@ public class autonewright extends LinearOpMode {
                     targets = 2950;
                 })
                 .waitSeconds(0.2)
-                .back(34)
+                .back(34.15)
                 .UNSTABLE_addTemporalMarkerOffset(-1, () -> {
                     turret.setPosition(0.1);
                 })
@@ -479,7 +479,7 @@ public class autonewright extends LinearOpMode {
                     targets = 2950;
                 })
                 .waitSeconds(0.2)
-                .back(34)
+                .back(34.15)
                 .UNSTABLE_addTemporalMarkerOffset(-1, () -> {
                     turret.setPosition(0.1);
                 })
@@ -518,7 +518,7 @@ public class autonewright extends LinearOpMode {
                     targets = 0;
                 })
 
-                .back(16)
+                .forward(34)
 
 
                 .build();
