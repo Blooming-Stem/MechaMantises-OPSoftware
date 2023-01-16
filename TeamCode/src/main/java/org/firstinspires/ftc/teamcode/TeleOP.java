@@ -123,9 +123,9 @@ public class TeleOP extends OpMode {
         telemetry.update();
 
         if (gamepad1.x){
-            claw.setPosition(0.3);
+            claw.setPosition(0.6);
         }else if (gamepad1.b){
-            claw.setPosition(0.55);
+            claw.setPosition(1);
         }
 
         if(gamepad2.y) {
