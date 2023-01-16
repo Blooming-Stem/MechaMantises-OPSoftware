@@ -142,12 +142,12 @@ public class teleopsolo extends OpMode {
             case LIFTARMRESET:
                 if (liftTimer.seconds() >= 0.5) {
                     turret.setPosition(0.5);
-                   // liftTimer.reset();
+                   liftTimer.reset();
                     liftstate = LiftState.LIFTRETRACT;
                 }
                 break;
             case LIFTRETRACT:
-                if(turret.getPosition()==0.5){
+                if(turret.getPosition()==0.5&&liftTimer.seconds()>=0.5){
                     targets= 0;
                     liftstate = LiftState.LIFTRETRACTED;
                 }
