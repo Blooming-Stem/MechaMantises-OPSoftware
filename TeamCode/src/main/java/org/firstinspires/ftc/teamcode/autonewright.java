@@ -6,7 +6,6 @@ import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.arcrobotics.ftclib.controller.PIDController;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -15,7 +14,6 @@ import com.qualcomm.robotcore.hardware.Servo;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
-import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequenceBuilder;
 import org.openftc.apriltag.AprilTagDetection;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
@@ -24,7 +22,7 @@ import org.openftc.easyopencv.OpenCvCameraRotation;
 import java.util.ArrayList;
 
 @Autonomous
-public class autonew extends LinearOpMode {
+public class autonewright extends LinearOpMode {
     private PIDController slidescontroller;
     public static double ps = 0.002, is = 0, ds = 0;
     public static double fs = 0.01;
@@ -220,9 +218,9 @@ public class autonew extends LinearOpMode {
                 .addDisplacementMarker(() -> {
                     targets = 2950;
                 })
-                .back(56.)
+                .back(56.25)
                 .UNSTABLE_addTemporalMarkerOffset(-1, () -> {
-                    turret.setPosition(0.1);
+                    turret.setPosition(0.9);
                 })
                 .waitSeconds(0.2)
                 .addTemporalMarker(() -> {
@@ -231,15 +229,10 @@ public class autonew extends LinearOpMode {
                 .waitSeconds(0.5)
                 .addTemporalMarker(() -> {
                     turret.setPosition(0.5);
-                    //targets = 500;
-                })
-                .waitSeconds(0.5)
-                .addTemporalMarker(() -> {
-
                     targets = 500;
                 })
                 .forward(7)
-                .turn(Math.toRadians(-87.75))
+                .turn(Math.toRadians(87.5))
                 .forward(27)
                 .addTemporalMarker(() -> {
                     claw.setPosition(1);
@@ -253,9 +246,9 @@ public class autonew extends LinearOpMode {
                     targets = 2950;
                 })
                 .waitSeconds(0.2)
-                .back(33.5)
+                .back(34)
                 .UNSTABLE_addTemporalMarkerOffset(-1, () -> {
-                    turret.setPosition(0.9);
+                    turret.setPosition(0.1);
                 })
                 .waitSeconds(0.2)
                 .addTemporalMarker(() -> {
@@ -264,11 +257,6 @@ public class autonew extends LinearOpMode {
                 .waitSeconds(0.5)
                 .addTemporalMarker(() -> {
                     turret.setPosition(0.5);
-                    //targets = 500;
-                })
-                .waitSeconds(0.5)
-                .addTemporalMarker(() -> {
-
                     targets = 400;
                 })
                 .forward(34)
@@ -284,9 +272,9 @@ public class autonew extends LinearOpMode {
                     targets = 2950;
                 })
                 .waitSeconds(0.2)
-                .back(33.5)
+                .back(34)
                 .UNSTABLE_addTemporalMarkerOffset(-1, () -> {
-                    turret.setPosition(0.9);
+                    turret.setPosition(0.1);
                 })
                 .waitSeconds(0.2)
                 .addTemporalMarker(() -> {
@@ -295,11 +283,6 @@ public class autonew extends LinearOpMode {
                 .waitSeconds(0.5)
                 .addTemporalMarker(() -> {
                     turret.setPosition(0.5);
-                    //targets = 500;
-                })
-                .waitSeconds(0.5)
-                .addTemporalMarker(() -> {
-
                     targets = 300;
                 })
                 .forward(34)
@@ -315,9 +298,9 @@ public class autonew extends LinearOpMode {
                     targets = 2950;
                 })
                 .waitSeconds(0.2)
-                .back(33.5)
+                .back(34)
                 .UNSTABLE_addTemporalMarkerOffset(-1, () -> {
-                    turret.setPosition(0.9);
+                    turret.setPosition(0.1);
                 })
                 .waitSeconds(0.2)
                 .addTemporalMarker(() -> {
@@ -325,11 +308,6 @@ public class autonew extends LinearOpMode {
                 }).waitSeconds(0.5)
                 .addTemporalMarker(() -> {
                     turret.setPosition(0.5);
-                    //targets = 500;
-                })
-                .waitSeconds(0.5)
-                .addTemporalMarker(() -> {
-
                     targets = 0;
                 })
 
@@ -343,9 +321,9 @@ public class autonew extends LinearOpMode {
                 .addDisplacementMarker(() -> {
                     targets = 2950;
                 })
-                .back(56)
+                .back(56.25)
                 .UNSTABLE_addTemporalMarkerOffset(-1, () -> {
-                    turret.setPosition(0.1);
+                    turret.setPosition(0.9);
                 })
                 .waitSeconds(0.2)
                 .addTemporalMarker(() -> {
@@ -354,15 +332,10 @@ public class autonew extends LinearOpMode {
                 .waitSeconds(0.5)
                 .addTemporalMarker(() -> {
                     turret.setPosition(0.5);
-                    //targets = 500;
-                })
-                .waitSeconds(0.5)
-                .addTemporalMarker(() -> {
-
                     targets = 500;
                 })
                 .forward(7)
-                .turn(Math.toRadians(-87.75))
+                .turn(Math.toRadians(87.5))
                 .forward(27)
                 .addTemporalMarker(() -> {
                     claw.setPosition(1);
@@ -376,9 +349,9 @@ public class autonew extends LinearOpMode {
                     targets = 2950;
                 })
                 .waitSeconds(0.2)
-                .back(33.5)
+                .back(34)
                 .UNSTABLE_addTemporalMarkerOffset(-1, () -> {
-                    turret.setPosition(0.9);
+                    turret.setPosition(0.1);
                 })
                 .waitSeconds(0.2)
                 .addTemporalMarker(() -> {
@@ -387,11 +360,6 @@ public class autonew extends LinearOpMode {
                 .waitSeconds(0.5)
                 .addTemporalMarker(() -> {
                     turret.setPosition(0.5);
-                    //targets = 500;
-                })
-                .waitSeconds(0.5)
-                .addTemporalMarker(() -> {
-
                     targets = 400;
                 })
                 .forward(34)
@@ -407,9 +375,9 @@ public class autonew extends LinearOpMode {
                     targets = 2950;
                 })
                 .waitSeconds(0.2)
-                .back(33.5)
+                .back(34)
                 .UNSTABLE_addTemporalMarkerOffset(-1, () -> {
-                    turret.setPosition(0.9);
+                    turret.setPosition(0.1);
                 })
                 .waitSeconds(0.2)
                 .addTemporalMarker(() -> {
@@ -418,11 +386,6 @@ public class autonew extends LinearOpMode {
                 .waitSeconds(0.5)
                 .addTemporalMarker(() -> {
                     turret.setPosition(0.5);
-                    //targets = 500;
-                })
-                .waitSeconds(0.5)
-                .addTemporalMarker(() -> {
-
                     targets = 300;
                 })
                 .forward(34)
@@ -438,9 +401,9 @@ public class autonew extends LinearOpMode {
                     targets = 2950;
                 })
                 .waitSeconds(0.2)
-                .back(33.5)
+                .back(34)
                 .UNSTABLE_addTemporalMarkerOffset(-1, () -> {
-                    turret.setPosition(0.9);
+                    turret.setPosition(0.1);
                 })
                 .waitSeconds(0.2)
                 .addTemporalMarker(() -> {
@@ -448,11 +411,6 @@ public class autonew extends LinearOpMode {
                 }).waitSeconds(0.5)
                 .addTemporalMarker(() -> {
                     turret.setPosition(0.5);
-                    //targets = 500;
-                })
-                .waitSeconds(0.5)
-                .addTemporalMarker(() -> {
-
                     targets = 0;
                 })
 
@@ -467,9 +425,9 @@ public class autonew extends LinearOpMode {
                 .addDisplacementMarker(() -> {
                     targets = 2950;
                 })
-                .back(56)
+                .back(56.25)
                 .UNSTABLE_addTemporalMarkerOffset(-1, () -> {
-                    turret.setPosition(0.1);
+                    turret.setPosition(0.9);
                 })
                 .waitSeconds(0.2)
                 .addTemporalMarker(() -> {
@@ -478,15 +436,10 @@ public class autonew extends LinearOpMode {
                 .waitSeconds(0.5)
                 .addTemporalMarker(() -> {
                     turret.setPosition(0.5);
-                    //targets = 500;
-                })
-                .waitSeconds(0.5)
-                .addTemporalMarker(() -> {
-
                     targets = 500;
                 })
                 .forward(7)
-                .turn(Math.toRadians(-87.75))
+                .turn(Math.toRadians(87.5))
                 .forward(27)
                 .addTemporalMarker(() -> {
                     claw.setPosition(1);
@@ -500,9 +453,9 @@ public class autonew extends LinearOpMode {
                     targets = 2950;
                 })
                 .waitSeconds(0.2)
-                .back(33.5)
+                .back(34)
                 .UNSTABLE_addTemporalMarkerOffset(-1, () -> {
-                    turret.setPosition(0.9);
+                    turret.setPosition(0.1);
                 })
                 .waitSeconds(0.2)
                 .addTemporalMarker(() -> {
@@ -511,11 +464,6 @@ public class autonew extends LinearOpMode {
                 .waitSeconds(0.5)
                 .addTemporalMarker(() -> {
                     turret.setPosition(0.5);
-                    //targets = 500;
-                })
-                .waitSeconds(0.5)
-                .addTemporalMarker(() -> {
-
                     targets = 400;
                 })
                 .forward(34)
@@ -531,9 +479,9 @@ public class autonew extends LinearOpMode {
                     targets = 2950;
                 })
                 .waitSeconds(0.2)
-                .back(33.5)
+                .back(34)
                 .UNSTABLE_addTemporalMarkerOffset(-1, () -> {
-                    turret.setPosition(0.9);
+                    turret.setPosition(0.1);
                 })
                 .waitSeconds(0.2)
                 .addTemporalMarker(() -> {
@@ -542,11 +490,6 @@ public class autonew extends LinearOpMode {
                 .waitSeconds(0.5)
                 .addTemporalMarker(() -> {
                     turret.setPosition(0.5);
-                    //targets = 500;
-                })
-                .waitSeconds(0.5)
-                .addTemporalMarker(() -> {
-
                     targets = 300;
                 })
                 .forward(34)
@@ -562,9 +505,9 @@ public class autonew extends LinearOpMode {
                     targets = 2950;
                 })
                 .waitSeconds(0.2)
-                .back(33.5)
+                .back(34)
                 .UNSTABLE_addTemporalMarkerOffset(-1, () -> {
-                    turret.setPosition(0.9);
+                    turret.setPosition(0.1);
                 })
                 .waitSeconds(0.2)
                 .addTemporalMarker(() -> {
@@ -572,11 +515,6 @@ public class autonew extends LinearOpMode {
                 }).waitSeconds(0.5)
                 .addTemporalMarker(() -> {
                     turret.setPosition(0.5);
-                    //targets = 500;
-                })
-                .waitSeconds(0.5)
-                .addTemporalMarker(() -> {
-
                     targets = 0;
                 })
 
