@@ -23,7 +23,7 @@ import org.openftc.easyopencv.OpenCvCameraRotation;
 
 import java.util.ArrayList;
 
-@Autonomous
+@Autonomous(name = "AutonomousLeftBLUERED")
 public class autonew extends LinearOpMode {
     private PIDController slidescontroller;
     public static double ps = 0.002, is = 0, ds = 0;

@@ -42,12 +42,14 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
 
 @TeleOp(name = "Sensor: REV2mDistance", group = "Sensor")
+@Disabled
 //@Disabled
 public class testdistance extends LinearOpMode {
 
     private DistanceSensor sensorRange;
 
     @Override
+
     public void runOpMode() {
         // you can use this as a regular DistanceSensor.
         sensorRange = hardwareMap.get(DistanceSensor.class, "distance");
