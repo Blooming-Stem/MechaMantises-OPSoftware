@@ -11,7 +11,7 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.util.Encoder;
 @TeleOp
-@Disabled
+//@Disabled
 public class odotest extends OpMode {
     private FtcDashboard dashboard = FtcDashboard.getInstance();
 

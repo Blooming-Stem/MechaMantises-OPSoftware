@@ -39,15 +39,11 @@ public class TeleOPFINAL extends OpMode {
     private DcMotorEx slidesright;
     private Servo turret;
     ElapsedTime liftTimer = new ElapsedTime();
-
-
     SampleMecanumDriveCancelable drive;
-
     DcMotor rightFront;
     DcMotor leftFront;
     DcMotor rightRear;
     DcMotor leftRear;
-
     Servo claw;
     public static int currentposleft;
     public static int currentposright;
@@ -63,15 +59,12 @@ public class TeleOPFINAL extends OpMode {
         LIFTRETRACT,
         LIFTBACK,
         LIFTRETRACTED,
-
-
     }
     public enum Mode{
         DRIVER_CONTROL,
         AUTOMATIC_CONTROL,
     }
     public enum Pole{
-
         LOW,
         MEDIUM,
         HIGH,
@@ -85,8 +78,17 @@ public class TeleOPFINAL extends OpMode {
         LEFT,
         RIGHT,
     }
+    public enum Drop{
+        LIFTIDLE,
+        LIFTSTART,
+        LIFTUP,
+        LIFTDROP,
+        LIFTDOWN,
+
+    }
     public String direction = "forward";
     public boolean automaticpickup = true;
+    Drop drop = Drop.LIFTIDLE;
     LiftState liftstate = LiftState.LIFTSTART;
     Mode mode = Mode.DRIVER_CONTROL;
     Pole pole = Pole.HIGH;
@@ -94,6 +96,8 @@ public class TeleOPFINAL extends OpMode {
     Side side = Side.LEFT;
 
     ElapsedTime toggletime = new ElapsedTime();
+    ElapsedTime droptime = new ElapsedTime();
+    ElapsedTime slacktime = new ElapsedTime();
     @Override
     public void init() {
 
@@ -132,6 +136,7 @@ public class TeleOPFINAL extends OpMode {
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
 
         toggletime.reset();
+        droptime.reset();
 
 
         leftFront.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -149,6 +154,7 @@ public class TeleOPFINAL extends OpMode {
     }
     @Override
     public void loop() {
+        telemetry.addData("DROPSTATE", drop);
         if(gamepad1.dpad_left||gamepad1.dpad_right){
             if(gamepad1.dpad_left){
                 side = Side.LEFT;
@@ -173,6 +179,34 @@ public class TeleOPFINAL extends OpMode {
         telemetry.addData("LiftState:",liftstate);
         switch (drivemode){
             case MANUAL:
+                switch (drop){
+                    case LIFTSTART:
+                        targets-=500;
+                        drop = Drop.LIFTUP;
+                        break;
+                    case LIFTUP:
+                        if(slidesleft.getCurrentPosition()>targets-30&&slidesright.getCurrentPosition()>targets-30){
+                            claw.setPosition(0.6);
+                            droptime.reset();
+                            drop = Drop.LIFTDROP;
+                        }
+                        break;
+                    case LIFTDROP:
+                        if(droptime.seconds()>0.5){
+                            targets+=500;
+                            drop = Drop.LIFTDOWN;
+                        }
+                        break;
+                    case LIFTDOWN:
+                        if(slidesleft.getCurrentPosition()<targets+30&&slidesright.getCurrentPosition()<targets+30) {
+                            drop = Drop.LIFTIDLE;
+                        }
+                        break;
+
+
+
+                }
+
                 drive.setWeightedDrivePower(
                         new Pose2d(
                                 -gamepad1.left_stick_y,
@@ -191,8 +225,9 @@ public class TeleOPFINAL extends OpMode {
                         toggletime.reset();
                     }
                 }
+
                 if(automaticpickup == true) {
-                    if (distance.getDistance(DistanceUnit.INCH) < 7) {
+                    if (distance.getDistance(DistanceUnit.INCH) < 5) {
                         claw.setPosition(1);
                     }
                 }
@@ -200,7 +235,12 @@ public class TeleOPFINAL extends OpMode {
                     claw.setPosition(1);
                 }
                 else if(gamepad1.right_bumper){
-                    claw.setPosition(0.6);
+                    if(slidesleft.getCurrentPosition()>1430&&slidesright.getCurrentPosition()>1430&&drop == Drop.LIFTIDLE){
+                        drop = Drop.LIFTSTART;
+                    }
+                    else {
+                        claw.setPosition(0.6);
+                    }
                 }
 
 
@@ -246,7 +286,7 @@ public class TeleOPFINAL extends OpMode {
                         );
                         switch (liftstate) {
                             case LIFTSTART:
-                                if (distance.getDistance(DistanceUnit.INCH) < 7) {
+                                if (distance.getDistance(DistanceUnit.INCH) < 5) {
                                     claw.setPosition(1);
                                     liftTimer.reset();
                                     liftstate = LiftState.LIFTCLAWCLOSE;
@@ -337,10 +377,14 @@ public class TeleOPFINAL extends OpMode {
                             case LIFTDROP:
                                 if (gamepad1.right_bumper) {
                                     claw.setPosition(0.6);
+                                    targets-=500;
+                                    //droptime.reset();
+
                                     liftTimer.reset();
                                     liftstate = LiftState.LIFTARMRESET;
                                 }
                                 break;
+
                             case LIFTARMRESET:
                                 if (liftTimer.seconds() >= 0.5) {
                                     turret.setPosition(0.5);

@@ -6,7 +6,6 @@ import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.arcrobotics.ftclib.controller.PIDController;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -15,7 +14,6 @@ import com.qualcomm.robotcore.hardware.Servo;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
-import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequenceBuilder;
 import org.openftc.apriltag.AprilTagDetection;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
@@ -23,8 +21,8 @@ import org.openftc.easyopencv.OpenCvCameraRotation;
 
 import java.util.ArrayList;
 
-@Autonomous(name = "AutonomousLeftBLUERED")
-public class autonew extends LinearOpMode {
+@Autonomous(name = "Autonomous1+5")
+public class autonewnew extends LinearOpMode {
     private PIDController slidescontroller;
     public static double ps = 0.002, is = 0, ds = 0;
     public static double fs = 0.01;
@@ -218,9 +216,9 @@ public class autonew extends LinearOpMode {
 
 
                 .addDisplacementMarker(() -> {
-                    targets = 2950;
+                    targets = 2200;
                 })
-                .back(57)
+                .back(34)
                 .UNSTABLE_addTemporalMarkerOffset(-1, () -> {
                     turret.setPosition(0.1);
                 })
@@ -240,117 +238,173 @@ public class autonew extends LinearOpMode {
 
                     targets = 500;
                 })
-                .forward(7)
-                .turn(Math.toRadians(-89))
+                .back(15)
+                .turn(Math.toRadians(-89.5))
                 .forward(27)
-                .addTemporalMarker(() -> {
+                .addTemporalMarker(()->{
                     claw.setPosition(1);
                 })
-//                .waitSeconds(0.3)
-//                .addTemporalMarker(()->{
-//                    targets=700;
-//                })
                 .waitSeconds(0.5)
-                .addTemporalMarker(() -> {
-                    targets = 2950;
+                .addTemporalMarker(()->{
+                    targets = 1440;
                 })
-                .waitSeconds(0.2)
-                .back(34)
-                .UNSTABLE_addTemporalMarkerOffset(-1, () -> {
-                    turret.setPosition(0.9);
+                .back(10.5)
+                .UNSTABLE_addTemporalMarkerOffset(-0.5,()->{
+                    turret.setPosition(0.1);
                 })
-                .waitSeconds(0.2)
-                .addTemporalMarker(() -> {
-                    targets-=500;
-                    claw.setPosition(0.5);
-                })
-                .waitSeconds(0.5)
-                .addTemporalMarker(() -> {
-                    turret.setPosition(0.5);
-                    //targets = 500;
-                })
-                .waitSeconds(0.5)
-                .addTemporalMarker(() -> {
 
+                .addTemporalMarker(()->{
+                    targets-=500;
+
+                    claw.setPosition(0.5);
+
+
+                })
+                .waitSeconds(0.5)
+                .addTemporalMarker(()->{
+                    targets+=500;
+                    turret.setPosition(0.5);
+                })
+
+
+                .forward(10.5)
+                .UNSTABLE_addTemporalMarkerOffset(-0.5,()->{
                     targets = 400;
                 })
-                .strafeLeft(0.25)
-                .forward(34)
-                .addTemporalMarker(() -> {
+                .addTemporalMarker(()->{
                     claw.setPosition(1);
                 })
-//                .waitSeconds(0.3)
-//                .addTemporalMarker(()->{
-//                    targets=700;
-//                })
-                .waitSeconds(0.2)
-                .addTemporalMarker(() -> {
-                    targets = 2950;
-                })
-                .waitSeconds(0.2)
-                .back(34)
-                .UNSTABLE_addTemporalMarkerOffset(-1, () -> {
-                    turret.setPosition(0.9);
-                })
-                .waitSeconds(0.2)
-                .addTemporalMarker(() -> {
-                    targets-=500;
-                    claw.setPosition(0.5);
-                })
                 .waitSeconds(0.5)
-                .addTemporalMarker(() -> {
-                    turret.setPosition(0.5);
-                    //targets = 500;
+                .addTemporalMarker(()->{
+                    targets = 1440;
                 })
-                .waitSeconds(0.5)
-                .addTemporalMarker(() -> {
+                .back(10.5)
+                .UNSTABLE_addTemporalMarkerOffset(-0.5,()->{
+                    turret.setPosition(0.1);
+                })
 
+                .addTemporalMarker(()->{
+                    targets-=500;
+
+                    claw.setPosition(0.5);
+
+
+                })
+                .waitSeconds(0.5)
+                .addTemporalMarker(()->{
+                    targets+=500;
+                    turret.setPosition(0.5);
+                })
+
+
+                .forward(10.5)
+                .UNSTABLE_addTemporalMarkerOffset(-0.5,()->{
                     targets = 300;
                 })
-                .strafeLeft(0.25)
-                .forward(34)
-                .addTemporalMarker(() -> {
+                .addTemporalMarker(()->{
                     claw.setPosition(1);
                 })
-//                .waitSeconds(0.3)
-//                .addTemporalMarker(()->{
-//                    targets=700;
-//                })
-                .waitSeconds(0.2)
-                .addTemporalMarker(() -> {
-                    targets = 2950;
+                .waitSeconds(0.5)
+                .addTemporalMarker(()->{
+                    targets = 1440;
                 })
-                .waitSeconds(0.2)
-                .back(34)
-                .UNSTABLE_addTemporalMarkerOffset(-1, () -> {
-                    turret.setPosition(0.9);
+                .back(10.5)
+                .UNSTABLE_addTemporalMarkerOffset(-0.5,()->{
+                    turret.setPosition(0.1);
                 })
-                .waitSeconds(0.2)
-                .addTemporalMarker(() -> {
+
+                .addTemporalMarker(()->{
                     targets-=500;
+
                     claw.setPosition(0.5);
-                }).waitSeconds(0.5)
-                .addTemporalMarker(() -> {
-                    turret.setPosition(0.5);
-                    //targets = 500;
+
+
                 })
                 .waitSeconds(0.5)
-                .addTemporalMarker(() -> {
+                .addTemporalMarker(()->{
+                    targets+=500;
+                    turret.setPosition(0.5);
+                })
 
+
+                .forward(10.5)
+                .UNSTABLE_addTemporalMarkerOffset(-0.5,()->{
+                    targets = 200;
+                })
+                .addTemporalMarker(()->{
+                    claw.setPosition(1);
+                })
+                .waitSeconds(0.5)
+                .addTemporalMarker(()->{
+                    targets = 1440;
+                })
+                .back(10.5)
+                .UNSTABLE_addTemporalMarkerOffset(-0.5,()->{
+                    turret.setPosition(0.1);
+                })
+
+                .addTemporalMarker(()->{
+                    targets-=500;
+
+                    claw.setPosition(0.5);
+
+
+                })
+                .waitSeconds(0.5)
+                .addTemporalMarker(()->{
+                    targets+=500;
+                    turret.setPosition(0.5);
+                })
+
+
+                .forward(10.5)
+                .UNSTABLE_addTemporalMarkerOffset(-0.5,()->{
+                    targets = 0;
+                })
+                .addTemporalMarker(()->{
+                    claw.setPosition(1);
+                })
+                .waitSeconds(0.5)
+                .addTemporalMarker(()->{
+                    targets = 1440;
+                })
+                .back(10.5)
+                .UNSTABLE_addTemporalMarkerOffset(-0.5,()->{
+                    turret.setPosition(0.1);
+                })
+
+                .addTemporalMarker(()->{
+                    targets-=500;
+
+                    claw.setPosition(0.5);
+
+
+                })
+                .waitSeconds(0.5)
+                .addTemporalMarker(()->{
+                    targets+=500;
+                    turret.setPosition(0.5);
+                })
+                .UNSTABLE_addTemporalMarkerOffset(0.5,()->{
                     targets = 0;
                 })
 
-                .forward(34)
+
+
+                .forward(10)
+
+
 
 
                 .build();
+
         TrajectorySequence traj2 = drive.trajectorySequenceBuilder(new Pose2d())
 
 
                 .addDisplacementMarker(() -> {
-                    targets = 2950;
+                    targets = 2200;
                 })
-                .back(57)
+                .back(34)
                 .UNSTABLE_addTemporalMarkerOffset(-1, () -> {
                     turret.setPosition(0.1);
                 })
@@ -358,6 +412,7 @@ public class autonew extends LinearOpMode {
                 .addTemporalMarker(() -> {
                     targets-=500;
                     claw.setPosition(0.5);
+
                 })
                 .waitSeconds(0.5)
                 .addTemporalMarker(() -> {
@@ -369,108 +424,162 @@ public class autonew extends LinearOpMode {
 
                     targets = 500;
                 })
-                .forward(7)
-                .turn(Math.toRadians(-89))
+                .back(15)
+                .turn(Math.toRadians(-89.5))
                 .forward(27)
-                .addTemporalMarker(() -> {
+                .addTemporalMarker(()->{
                     claw.setPosition(1);
                 })
-//                .waitSeconds(0.3)
-//                .addTemporalMarker(()->{
-//                    targets=700;
-//                })
                 .waitSeconds(0.5)
-                .addTemporalMarker(() -> {
-                    targets = 2950;
+                .addTemporalMarker(()->{
+                    targets = 1440;
                 })
-                .waitSeconds(0.2)
-                .back(34)
-                .UNSTABLE_addTemporalMarkerOffset(-1, () -> {
-                    turret.setPosition(0.9);
+                .back(10.5)
+                .UNSTABLE_addTemporalMarkerOffset(-0.5,()->{
+                    turret.setPosition(0.1);
                 })
-                .waitSeconds(0.2)
-                .addTemporalMarker(() -> {
-                    targets-=500;
-                    claw.setPosition(0.5);
-                })
-                .waitSeconds(0.5)
-                .addTemporalMarker(() -> {
-                    turret.setPosition(0.5);
-                    //targets = 500;
-                })
-                .waitSeconds(0.5)
-                .addTemporalMarker(() -> {
 
+                .addTemporalMarker(()->{
+                    targets-=500;
+
+                    claw.setPosition(0.5);
+
+
+                })
+                .waitSeconds(0.5)
+                .addTemporalMarker(()->{
+                    targets+=500;
+                    turret.setPosition(0.5);
+                })
+
+
+                .forward(10.5)
+                .UNSTABLE_addTemporalMarkerOffset(-0.5,()->{
                     targets = 400;
                 })
-                .strafeLeft(0.25)
-                .forward(34)
-                .addTemporalMarker(() -> {
+                .addTemporalMarker(()->{
                     claw.setPosition(1);
                 })
-//                .waitSeconds(0.3)
-//                .addTemporalMarker(()->{
-//                    targets=700;
-//                })
-                .waitSeconds(0.2)
-                .addTemporalMarker(() -> {
-                    targets = 2950;
-                })
-                .waitSeconds(0.2)
-                .back(34)
-                .UNSTABLE_addTemporalMarkerOffset(-1, () -> {
-                    turret.setPosition(0.9);
-                })
-                .waitSeconds(0.2)
-                .addTemporalMarker(() -> {
-                    targets-=500;
-                    claw.setPosition(0.5);
-                })
                 .waitSeconds(0.5)
-                .addTemporalMarker(() -> {
-                    turret.setPosition(0.5);
-                    //targets = 500;
+                .addTemporalMarker(()->{
+                    targets = 1440;
                 })
-                .waitSeconds(0.5)
-                .addTemporalMarker(() -> {
+                .back(10.5)
+                .UNSTABLE_addTemporalMarkerOffset(-0.5,()->{
+                    turret.setPosition(0.1);
+                })
 
+                .addTemporalMarker(()->{
+                    targets-=500;
+
+                    claw.setPosition(0.5);
+
+
+                })
+                .waitSeconds(0.5)
+                .addTemporalMarker(()->{
+                    targets+=500;
+                    turret.setPosition(0.5);
+                })
+
+
+                .forward(10.5)
+                .UNSTABLE_addTemporalMarkerOffset(-0.5,()->{
                     targets = 300;
                 })
-                .strafeLeft(0.25)
-                .forward(34)
-                .strafeLeft(0.25)
-                .addTemporalMarker(() -> {
+                .addTemporalMarker(()->{
                     claw.setPosition(1);
                 })
-//                .waitSeconds(0.3)
-//                .addTemporalMarker(()->{
-//                    targets=700;
-//                })
-                .waitSeconds(0.2)
-                .addTemporalMarker(() -> {
-                    targets = 2950;
+                .waitSeconds(0.5)
+                .addTemporalMarker(()->{
+                    targets = 1440;
                 })
-                .waitSeconds(0.2)
-                .back(34)
-                .UNSTABLE_addTemporalMarkerOffset(-1, () -> {
-                    turret.setPosition(0.9);
+                .back(10.5)
+                .UNSTABLE_addTemporalMarkerOffset(-0.5,()->{
+                    turret.setPosition(0.1);
                 })
-                .waitSeconds(0.2)
-                .addTemporalMarker(() -> {
+
+                .addTemporalMarker(()->{
                     targets-=500;
+
                     claw.setPosition(0.5);
-                }).waitSeconds(0.5)
-                .addTemporalMarker(() -> {
-                    turret.setPosition(0.5);
-                    //targets = 500;
+
+
                 })
                 .waitSeconds(0.5)
-                .addTemporalMarker(() -> {
+                .addTemporalMarker(()->{
+                    targets+=500;
+                    turret.setPosition(0.5);
+                })
 
+
+                .forward(10.5)
+                .UNSTABLE_addTemporalMarkerOffset(-0.5,()->{
+                    targets = 200;
+                })
+                .addTemporalMarker(()->{
+                    claw.setPosition(1);
+                })
+                .waitSeconds(0.5)
+                .addTemporalMarker(()->{
+                    targets = 1440;
+                })
+                .back(10.5)
+                .UNSTABLE_addTemporalMarkerOffset(-0.5,()->{
+                    turret.setPosition(0.1);
+                })
+
+                .addTemporalMarker(()->{
+                    targets-=500;
+
+                    claw.setPosition(0.5);
+
+
+                })
+                .waitSeconds(0.5)
+                .addTemporalMarker(()->{
+                    targets+=500;
+                    turret.setPosition(0.5);
+                })
+
+
+                .forward(10.5)
+                .UNSTABLE_addTemporalMarkerOffset(-0.5,()->{
+                    targets = 0;
+                })
+                .addTemporalMarker(()->{
+                    claw.setPosition(1);
+                })
+                .waitSeconds(0.5)
+                .addTemporalMarker(()->{
+                    targets = 1440;
+                })
+                .back(10.5)
+                .UNSTABLE_addTemporalMarkerOffset(-0.5,()->{
+                    turret.setPosition(0.1);
+                })
+
+                .addTemporalMarker(()->{
+                    targets-=500;
+
+                    claw.setPosition(0.5);
+
+
+                })
+                .waitSeconds(0.5)
+                .addTemporalMarker(()->{
+                    targets+=500;
+                    turret.setPosition(0.5);
+                })
+                .UNSTABLE_addTemporalMarkerOffset(0.5,()->{
                     targets = 0;
                 })
 
-                .forward(6)
+
+
+                .back(16)
+
+
 
 
                 .build();
@@ -479,9 +588,9 @@ public class autonew extends LinearOpMode {
 
 
                 .addDisplacementMarker(() -> {
-                    targets = 2950;
+                    targets = 2200;
                 })
-                .back(57)
+                .back(34)
                 .UNSTABLE_addTemporalMarkerOffset(-1, () -> {
                     turret.setPosition(0.1);
                 })
@@ -489,6 +598,7 @@ public class autonew extends LinearOpMode {
                 .addTemporalMarker(() -> {
                     targets-=500;
                     claw.setPosition(0.5);
+
                 })
                 .waitSeconds(0.5)
                 .addTemporalMarker(() -> {
@@ -500,110 +610,427 @@ public class autonew extends LinearOpMode {
 
                     targets = 500;
                 })
-                .forward(7)
-                .turn(Math.toRadians(-89))
+                .back(15)
+                .turn(Math.toRadians(-89.5))
                 .forward(27)
-                .addTemporalMarker(() -> {
+                .addTemporalMarker(()->{
                     claw.setPosition(1);
                 })
-//                .waitSeconds(0.3)
-//                .addTemporalMarker(()->{
-//                    targets=700;
-//                })
                 .waitSeconds(0.5)
-                .addTemporalMarker(() -> {
-                    targets = 2950;
+                .addTemporalMarker(()->{
+                    targets = 1440;
                 })
-                .waitSeconds(0.2)
-                .back(34)
-                .UNSTABLE_addTemporalMarkerOffset(-1, () -> {
-                    turret.setPosition(0.9);
+                .back(10.5)
+                .UNSTABLE_addTemporalMarkerOffset(-0.5,()->{
+                    turret.setPosition(0.1);
                 })
-                .waitSeconds(0.2)
-                .addTemporalMarker(() -> {
-                    targets-=500;
-                    claw.setPosition(0.5);
-                })
-                .waitSeconds(0.5)
-                .addTemporalMarker(() -> {
-                    turret.setPosition(0.5);
-                    //targets = 500;
-                })
-                .waitSeconds(0.5)
-                .addTemporalMarker(() -> {
 
+                .addTemporalMarker(()->{
+                    targets-=500;
+
+                    claw.setPosition(0.5);
+
+
+                })
+                .waitSeconds(0.5)
+                .addTemporalMarker(()->{
+                    targets+=500;
+                    turret.setPosition(0.5);
+                })
+
+
+                .forward(10.5)
+                .UNSTABLE_addTemporalMarkerOffset(-0.5,()->{
                     targets = 400;
                 })
-                .strafeLeft(0.25)
-                .forward(34)
-                .addTemporalMarker(() -> {
+                .addTemporalMarker(()->{
                     claw.setPosition(1);
                 })
-//                .waitSeconds(0.3)
-//                .addTemporalMarker(()->{
-//                    targets=700;
-//                })
-                .waitSeconds(0.2)
-                .addTemporalMarker(() -> {
-                    targets = 2950;
-                })
-                .waitSeconds(0.2)
-                .back(34)
-                .UNSTABLE_addTemporalMarkerOffset(-1, () -> {
-                    turret.setPosition(0.9);
-                })
-                .waitSeconds(0.2)
-                .addTemporalMarker(() -> {
-                    targets-=500;
-                    claw.setPosition(0.5);
-                })
                 .waitSeconds(0.5)
-                .addTemporalMarker(() -> {
-                    turret.setPosition(0.5);
-                    //targets = 500;
+                .addTemporalMarker(()->{
+                    targets = 1440;
                 })
-                .waitSeconds(0.5)
-                .addTemporalMarker(() -> {
+                .back(10.5)
+                .UNSTABLE_addTemporalMarkerOffset(-0.5,()->{
+                    turret.setPosition(0.1);
+                })
 
+                .addTemporalMarker(()->{
+                    targets-=500;
+
+                    claw.setPosition(0.5);
+
+
+                })
+                .waitSeconds(0.5)
+                .addTemporalMarker(()->{
+                    targets+=500;
+                    turret.setPosition(0.5);
+                })
+
+
+                .forward(10.5)
+                .UNSTABLE_addTemporalMarkerOffset(-0.5,()->{
                     targets = 300;
                 })
-                .strafeLeft(0.25)
-                .forward(34)
-                .addTemporalMarker(() -> {
+                .addTemporalMarker(()->{
                     claw.setPosition(1);
                 })
-//                .waitSeconds(0.3)
-//                .addTemporalMarker(()->{
-//                    targets=700;
-//                })
-                .waitSeconds(0.2)
-                .addTemporalMarker(() -> {
-                    targets = 2950;
+                .waitSeconds(0.5)
+                .addTemporalMarker(()->{
+                    targets = 1440;
                 })
-                .waitSeconds(0.2)
-                .back(34)
-                .UNSTABLE_addTemporalMarkerOffset(-1, () -> {
-                    turret.setPosition(0.9);
+                .back(10.5)
+                .UNSTABLE_addTemporalMarkerOffset(-0.5,()->{
+                    turret.setPosition(0.1);
                 })
-                .waitSeconds(0.2)
-                .addTemporalMarker(() -> {
+
+                .addTemporalMarker(()->{
                     targets-=500;
+
                     claw.setPosition(0.5);
-                }).waitSeconds(0.5)
-                .addTemporalMarker(() -> {
-                    turret.setPosition(0.5);
-                    //targets = 500;
+
+
                 })
                 .waitSeconds(0.5)
-                .addTemporalMarker(() -> {
+                .addTemporalMarker(()->{
+                    targets+=500;
+                    turret.setPosition(0.5);
+                })
 
+
+                .forward(10.5)
+                .UNSTABLE_addTemporalMarkerOffset(-0.5,()->{
+                    targets = 200;
+                })
+                .addTemporalMarker(()->{
+                    claw.setPosition(1);
+                })
+                .waitSeconds(0.5)
+                .addTemporalMarker(()->{
+                    targets = 1440;
+                })
+                .back(10.5)
+                .UNSTABLE_addTemporalMarkerOffset(-0.5,()->{
+                    turret.setPosition(0.1);
+                })
+
+                .addTemporalMarker(()->{
+                    targets-=500;
+
+                    claw.setPosition(0.5);
+
+
+                })
+                .waitSeconds(0.5)
+                .addTemporalMarker(()->{
+                    targets+=500;
+                    turret.setPosition(0.5);
+                })
+
+
+                .forward(10.5)
+                .UNSTABLE_addTemporalMarkerOffset(-0.5,()->{
+                    targets = 0;
+                })
+                .addTemporalMarker(()->{
+                    claw.setPosition(1);
+                })
+                .waitSeconds(0.5)
+                .addTemporalMarker(()->{
+                    targets = 1440;
+                })
+                .back(10.5)
+                .UNSTABLE_addTemporalMarkerOffset(-0.5,()->{
+                    turret.setPosition(0.1);
+                })
+
+                .addTemporalMarker(()->{
+                    targets-=500;
+
+                    claw.setPosition(0.5);
+
+
+                })
+                .waitSeconds(0.5)
+                .addTemporalMarker(()->{
+                    targets+=500;
+                    turret.setPosition(0.5);
+                })
+                .UNSTABLE_addTemporalMarkerOffset(0.5,()->{
                     targets = 0;
                 })
 
-                .back(16)
+
+
+                .back(40)
+
+
 
 
                 .build();
+
+
+//        TrajectorySequence traj2 = drive.trajectorySequenceBuilder(new Pose2d())
+//
+//
+//                .addDisplacementMarker(() -> {
+//                    targets = 2950;
+//                })
+//                .back(57)
+//                .UNSTABLE_addTemporalMarkerOffset(-1, () -> {
+//                    turret.setPosition(0.1);
+//                })
+//                .waitSeconds(0.2)
+//                .addTemporalMarker(() -> {
+//                    targets-=500;
+//                    claw.setPosition(0.5);
+//                })
+//                .waitSeconds(0.5)
+//                .addTemporalMarker(() -> {
+//                    turret.setPosition(0.5);
+//                    //targets = 500;
+//                })
+//                .waitSeconds(0.5)
+//                .addTemporalMarker(() -> {
+//
+//                    targets = 500;
+//                })
+//                .forward(7)
+//                .turn(Math.toRadians(-89))
+//                .forward(27)
+//                .addTemporalMarker(() -> {
+//                    claw.setPosition(1);
+//                })
+////                .waitSeconds(0.3)
+////                .addTemporalMarker(()->{
+////                    targets=700;
+////                })
+//                .waitSeconds(0.5)
+//                .addTemporalMarker(() -> {
+//                    targets = 2950;
+//                })
+//                .waitSeconds(0.2)
+//                .back(34)
+//                .UNSTABLE_addTemporalMarkerOffset(-1, () -> {
+//                    turret.setPosition(0.9);
+//                })
+//                .waitSeconds(0.2)
+//                .addTemporalMarker(() -> {
+//                    targets-=500;
+//                    claw.setPosition(0.5);
+//                })
+//                .waitSeconds(0.5)
+//                .addTemporalMarker(() -> {
+//                    turret.setPosition(0.5);
+//                    //targets = 500;
+//                })
+//                .waitSeconds(0.5)
+//                .addTemporalMarker(() -> {
+//
+//                    targets = 400;
+//                })
+//                .strafeLeft(0.25)
+//                .forward(34)
+//                .addTemporalMarker(() -> {
+//                    claw.setPosition(1);
+//                })
+////                .waitSeconds(0.3)
+////                .addTemporalMarker(()->{
+////                    targets=700;
+////                })
+//                .waitSeconds(0.2)
+//                .addTemporalMarker(() -> {
+//                    targets = 2950;
+//                })
+//                .waitSeconds(0.2)
+//                .back(34)
+//                .UNSTABLE_addTemporalMarkerOffset(-1, () -> {
+//                    turret.setPosition(0.9);
+//                })
+//                .waitSeconds(0.2)
+//                .addTemporalMarker(() -> {
+//                    targets-=500;
+//                    claw.setPosition(0.5);
+//                })
+//                .waitSeconds(0.5)
+//                .addTemporalMarker(() -> {
+//                    turret.setPosition(0.5);
+//                    //targets = 500;
+//                })
+//                .waitSeconds(0.5)
+//                .addTemporalMarker(() -> {
+//
+//                    targets = 300;
+//                })
+//                .strafeLeft(0.25)
+//                .forward(34)
+//                .strafeLeft(0.25)
+//                .addTemporalMarker(() -> {
+//                    claw.setPosition(1);
+//                })
+////                .waitSeconds(0.3)
+////                .addTemporalMarker(()->{
+////                    targets=700;
+////                })
+//                .waitSeconds(0.2)
+//                .addTemporalMarker(() -> {
+//                    targets = 2950;
+//                })
+//                .waitSeconds(0.2)
+//                .back(34)
+//                .UNSTABLE_addTemporalMarkerOffset(-1, () -> {
+//                    turret.setPosition(0.9);
+//                })
+//                .waitSeconds(0.2)
+//                .addTemporalMarker(() -> {
+//                    targets-=500;
+//                    claw.setPosition(0.5);
+//                }).waitSeconds(0.5)
+//                .addTemporalMarker(() -> {
+//                    turret.setPosition(0.5);
+//                    //targets = 500;
+//                })
+//                .waitSeconds(0.5)
+//                .addTemporalMarker(() -> {
+//
+//                    targets = 0;
+//                })
+//
+//                .forward(6)
+//
+//
+//                .build();
+//
+//        TrajectorySequence traj3 = drive.trajectorySequenceBuilder(new Pose2d())
+//
+//
+//                .addDisplacementMarker(() -> {
+//                    targets = 2950;
+//                })
+//                .back(57)
+//                .UNSTABLE_addTemporalMarkerOffset(-1, () -> {
+//                    turret.setPosition(0.1);
+//                })
+//                .waitSeconds(0.2)
+//                .addTemporalMarker(() -> {
+//                    targets-=500;
+//                    claw.setPosition(0.5);
+//                })
+//                .waitSeconds(0.5)
+//                .addTemporalMarker(() -> {
+//                    turret.setPosition(0.5);
+//                    //targets = 500;
+//                })
+//                .waitSeconds(0.5)
+//                .addTemporalMarker(() -> {
+//
+//                    targets = 500;
+//                })
+//                .forward(7)
+//                .turn(Math.toRadians(-89))
+//                .forward(27)
+//                .addTemporalMarker(() -> {
+//                    claw.setPosition(1);
+//                })
+////                .waitSeconds(0.3)
+////                .addTemporalMarker(()->{
+////                    targets=700;
+////                })
+//                .waitSeconds(0.5)
+//                .addTemporalMarker(() -> {
+//                    targets = 2950;
+//                })
+//                .waitSeconds(0.2)
+//                .back(34)
+//                .UNSTABLE_addTemporalMarkerOffset(-1, () -> {
+//                    turret.setPosition(0.9);
+//                })
+//                .waitSeconds(0.2)
+//                .addTemporalMarker(() -> {
+//                    targets-=500;
+//                    claw.setPosition(0.5);
+//                })
+//                .waitSeconds(0.5)
+//                .addTemporalMarker(() -> {
+//                    turret.setPosition(0.5);
+//                    //targets = 500;
+//                })
+//                .waitSeconds(0.5)
+//                .addTemporalMarker(() -> {
+//
+//                    targets = 400;
+//                })
+//                .strafeLeft(0.25)
+//                .forward(34)
+//                .addTemporalMarker(() -> {
+//                    claw.setPosition(1);
+//                })
+////                .waitSeconds(0.3)
+////                .addTemporalMarker(()->{
+////                    targets=700;
+////                })
+//                .waitSeconds(0.2)
+//                .addTemporalMarker(() -> {
+//                    targets = 2950;
+//                })
+//                .waitSeconds(0.2)
+//                .back(34)
+//                .UNSTABLE_addTemporalMarkerOffset(-1, () -> {
+//                    turret.setPosition(0.9);
+//                })
+//                .waitSeconds(0.2)
+//                .addTemporalMarker(() -> {
+//                    targets-=500;
+//                    claw.setPosition(0.5);
+//                })
+//                .waitSeconds(0.5)
+//                .addTemporalMarker(() -> {
+//                    turret.setPosition(0.5);
+//                    //targets = 500;
+//                })
+//                .waitSeconds(0.5)
+//                .addTemporalMarker(() -> {
+//
+//                    targets = 300;
+//                })
+//                .strafeLeft(0.25)
+//                .forward(34)
+//                .addTemporalMarker(() -> {
+//                    claw.setPosition(1);
+//                })
+////                .waitSeconds(0.3)
+////                .addTemporalMarker(()->{
+////                    targets=700;
+////                })
+//                .waitSeconds(0.2)
+//                .addTemporalMarker(() -> {
+//                    targets = 2950;
+//                })
+//                .waitSeconds(0.2)
+//                .back(34)
+//                .UNSTABLE_addTemporalMarkerOffset(-1, () -> {
+//                    turret.setPosition(0.9);
+//                })
+//                .waitSeconds(0.2)
+//                .addTemporalMarker(() -> {
+//                    targets-=500;
+//                    claw.setPosition(0.5);
+//                }).waitSeconds(0.5)
+//                .addTemporalMarker(() -> {
+//                    turret.setPosition(0.5);
+//                    //targets = 500;
+//                })
+//                .waitSeconds(0.5)
+//                .addTemporalMarker(() -> {
+//
+//                    targets = 0;
+//                })
+//
+//                .back(16)
+//
+//
+//                .build();
 
 //        TrajectorySequence traj3 = drive.trajectorySequenceBuilder(new Pose2d())
 //
