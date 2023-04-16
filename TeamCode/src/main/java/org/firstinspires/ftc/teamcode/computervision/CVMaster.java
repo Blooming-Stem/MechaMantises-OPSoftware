@@ -12,7 +12,7 @@ import org.openftc.easyopencv.OpenCvWebcam;
 
 public class CVMaster {
     OpenCvWebcam webcam;
-    StickObserverPipeline pipeline;
+    public StickObserverPipeline pipeline;
     private LinearOpMode op;
     public CVMaster(LinearOpMode p_op){
         //you can input  a hardwareMap instead of linearOpMode if you want
