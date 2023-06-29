@@ -21,7 +21,7 @@ import java.util.Comparator;
 
 //for dashboard
 /*@Config*/
-public class StickObserverPipeline extends OpenCvPipeline {
+public class ConeObserverPipeline extends OpenCvPipeline {
 
     public double pixel_height = 0.0;
     public double coneCenterX = 0.0;
@@ -41,7 +41,7 @@ public class StickObserverPipeline extends OpenCvPipeline {
 
     public static double camera_fov = 55;
 
-    public StickObserverPipeline() {
+    public ConeObserverPipeline() {
         frameList = new ArrayList<>();
         distance = getDistanceFromCone();
 

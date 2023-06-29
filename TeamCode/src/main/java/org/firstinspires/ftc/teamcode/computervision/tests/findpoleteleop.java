@@ -15,7 +15,7 @@ import org.firstinspires.ftc.teamcode.roadrunner.util.BNO055IMUUtil;
 
 @TeleOp
 @Config
-public class findconeteleop extends LinearOpMode {
+public class findpoleteleop extends LinearOpMode {
     BNO055IMU imu;
 
     private PIDController pidController;
@@ -35,9 +35,9 @@ public class findconeteleop extends LinearOpMode {
 
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
         CVMaster cv = new CVMaster(this);
-        cv.observeCone();
+        cv.observePole();
         while(!isStarted()&&!isStopRequested()) {
-            if (cv.conePipeline.pixel_height > 0) {
+            if (cv.polePipeline.pixel_width > 0) {
                 telemetry.addLine("Ready!");
 
             } else {
@@ -50,10 +50,10 @@ public class findconeteleop extends LinearOpMode {
         }
 
         while(opModeIsActive()){
-            if(cv.conePipeline.getDistanceFromCone()<50){
-                telemetry.addData("Distance", cv.conePipeline.getDistanceFromCone());
+            if(cv.polePipeline.getDistanceFromCone()<50){
+                telemetry.addData("Distance", cv.polePipeline.getDistanceFromCone());
                 pidController.setPID(kp, ki, kd);
-                pid = pidController.calculate(imu.getAngularOrientation().firstAngle, cv.conePipeline.turnAngle());
+                pid = pidController.calculate(imu.getAngularOrientation().firstAngle, cv.polePipeline.turnAngle());
 
 
 

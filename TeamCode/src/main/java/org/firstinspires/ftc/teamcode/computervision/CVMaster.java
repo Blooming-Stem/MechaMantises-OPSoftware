@@ -4,7 +4,8 @@ import com.acmerobotics.dashboard.FtcDashboard;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
-import org.firstinspires.ftc.teamcode.computervision.pipelines.StickObserverPipeline;
+import org.firstinspires.ftc.teamcode.computervision.pipelines.ConeObserverPipeline;
+import org.firstinspires.ftc.teamcode.computervision.pipelines.PoleObserverPipeline;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
@@ -12,7 +13,10 @@ import org.openftc.easyopencv.OpenCvWebcam;
 
 public class CVMaster {
     OpenCvWebcam webcam;
-    public StickObserverPipeline pipeline;
+    public ConeObserverPipeline conePipeline;
+
+    public PoleObserverPipeline polePipeline;
+
     private LinearOpMode op;
     public CVMaster(LinearOpMode p_op){
         //you can input  a hardwareMap instead of linearOpMode if you want
@@ -22,10 +26,30 @@ public class CVMaster {
         int cameraMonitorViewId = op.hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", op.hardwareMap.appContext.getPackageName());
         webcam = OpenCvCameraFactory.getInstance().createWebcam(op.hardwareMap.get(WebcamName.class, "MantisCam"), cameraMonitorViewId);
     }
-    public void observeStick(){
+    public void observeCone(){
         //create the pipeline
-        pipeline = new StickObserverPipeline();
-        webcam.setPipeline(pipeline);
+        conePipeline = new ConeObserverPipeline();
+        webcam.setPipeline(conePipeline);
+
+
+        webcam.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener()
+        {
+            @Override
+            public void onOpened()
+            {
+                webcam.startStreaming(640,480, OpenCvCameraRotation.UPRIGHT);
+                FtcDashboard.getInstance().startCameraStream(webcam, 10);
+            }
+
+            @Override
+            public void onError(int errorCode) {}
+        });
+
+    }
+    public void observePole(){
+        //create the pipeline
+        polePipeline = new PoleObserverPipeline();
+        webcam.setPipeline(polePipeline);
 
 
         webcam.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener()

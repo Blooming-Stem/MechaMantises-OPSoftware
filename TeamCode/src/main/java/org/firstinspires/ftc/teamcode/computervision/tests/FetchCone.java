@@ -35,8 +35,8 @@ public class FetchCone extends LinearOpMode
     public void runOpMode()
     {
         claw = hardwareMap.servo.get("claw");
-        claw.setPosition(0.6);
-        turret = hardwareMap.servo.get("turret");
+        claw.setPosition(0.9);
+        //urret = hardwareMap.servo.get("turret");
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
         /**
@@ -53,14 +53,14 @@ public class FetchCone extends LinearOpMode
          * This REPLACES waitForStart!
          */
         CVMaster cv = new CVMaster(this);
-        cv.observeStick();
+        cv.observeCone();
         while(!isStarted()&&!isStopRequested()) {
 
-            if (cv.pipeline.pixel_height > 0) {
+            if (cv.conePipeline.pixel_height > 0) {
                 telemetry.addLine("Ready!");
-                telemetry.addData("Distance from Cone", cv.pipeline.getDistanceFromCone());
-                telemetry.addData("Lateral Distance from Cone", cv.pipeline.getlateralDistance());
-                telemetry.addData("Angle from Cone", cv.pipeline.turnAngle());
+                telemetry.addData("Distance from Cone", cv.conePipeline.getDistanceFromCone());
+                telemetry.addData("Lateral Distance from Cone", cv.conePipeline.getlateralDistance());
+                telemetry.addData("Angle from Cone", cv.conePipeline.turnAngle());
             } else {
 
             }
@@ -72,9 +72,9 @@ public class FetchCone extends LinearOpMode
          * for later use. We must do this because the analysis will continue
          * to change as the camera view changes once the robot starts moving!
          */
-        distance = cv.pipeline.getDistanceFromCone();
-        lateral = cv.pipeline.getlateralDistance();
-        angle = cv.pipeline.turnAngle();
+        distance = cv.conePipeline.getDistanceFromCone();
+        lateral = cv.conePipeline.getlateralDistance();
+        angle = cv.conePipeline.turnAngle();
 
         /*
          * Show that snapshot on the telemetry
