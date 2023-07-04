@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.teamcode.computervision.pipelines.ConeObserverPipeline;
-import org.firstinspires.ftc.teamcode.computervision.pipelines.PoleObserverPipeline;
+
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
@@ -15,7 +15,7 @@ public class CVMaster {
     OpenCvWebcam webcam;
     public ConeObserverPipeline conePipeline;
 
-    public PoleObserverPipeline polePipeline;
+
 
     private LinearOpMode op;
     public CVMaster(LinearOpMode p_op){
@@ -46,26 +46,7 @@ public class CVMaster {
         });
 
     }
-    public void observePole(){
-        //create the pipeline
-        polePipeline = new PoleObserverPipeline();
-        webcam.setPipeline(polePipeline);
 
-
-        webcam.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener()
-        {
-            @Override
-            public void onOpened()
-            {
-                webcam.startStreaming(640,480, OpenCvCameraRotation.UPRIGHT);
-                FtcDashboard.getInstance().startCameraStream(webcam, 10);
-            }
-
-            @Override
-            public void onError(int errorCode) {}
-        });
-
-    }
 
 
 

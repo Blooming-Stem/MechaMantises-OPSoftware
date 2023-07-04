@@ -58,8 +58,8 @@ public class ConeObserverPipeline extends OpenCvPipeline {
         }
 
         // lenient bounds will filter out near yellow, this should filter out all near yellow things(tune this if needed)
-        Scalar lowHSV = new Scalar(110,50, 50); // lenient lower bound HSV for yellow
-        Scalar highHSV = new Scalar(130, 255, 255); // lenient higher bound HSV for yellow
+        Scalar lowHSV = new Scalar(110,50, 50); // lenient lower bound HSV for blue
+        Scalar highHSV = new Scalar(130, 255, 255); // lenient higher bound HSV for blue
         Scalar color = new Scalar(0,256, 0);
         Mat mask = new Mat();
         Core.inRange(mat, lowHSV, highHSV, mask);
